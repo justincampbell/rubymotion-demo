@@ -1,8 +1,18 @@
 class TweetsController < UITableViewController
+  API_URL = "http://search.twitter.com/search.json?q=rubymotion"
+
   def viewDidLoad
-    @tweets = %w[One Two Three].map { |text|
-      Tweet.new(text, "@nobody")
-    }
+    @tweets = [
+      Tweet.new("Please wait...", "We're talking to Twitter")
+    ]
+
+    AFMotion::JSON.get API_URL do |response|
+      @tweets = response.object['results'].map { |tweet|
+        Tweet.new(tweet['text'], "@#{tweet['from_user']}")
+      }
+
+      view.reloadData
+    end
   end
 
   def tableView(tableView, numberOfRowsInSection: section)
