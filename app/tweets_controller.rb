@@ -22,4 +22,16 @@ class TweetsController < UITableViewController
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     TweetCell.fromTweet(@tweets[indexPath.row])
   end
+
+  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    tweet = @tweets[indexPath.row]
+
+    alert = UIAlertView.alloc.initWithTitle tweet.user,
+      message: tweet.text,
+      delegate: nil,
+      cancelButtonTitle: "Close",
+      otherButtonTitles: nil
+
+    alert.show
+  end
 end
