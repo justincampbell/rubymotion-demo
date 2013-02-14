@@ -14,3 +14,7 @@ nbproject
 .eprj
 .sass-cache
 .idea
+
+# For demo purposes
+Gemfile.lock
+vendor/Pod*
