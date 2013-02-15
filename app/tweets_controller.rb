@@ -26,4 +26,8 @@ class TweetsController < UITableViewController
   def tableView(tableView, heightForRowAtIndexPath:indexPath)
     TweetCell::HEIGHT
   end
+
+  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    tableView.deselectRowAtIndexPath indexPath, animated: true
+  end
 end
